@@ -9,7 +9,7 @@
 ***
 objc 的一些代码
 
-```
+```objc
     // some codes
     id obj = self;
     if([obj respondsToSelector:@selector(doSomething:)] )
