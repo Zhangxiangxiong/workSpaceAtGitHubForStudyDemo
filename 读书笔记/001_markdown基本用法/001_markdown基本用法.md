@@ -21,7 +21,18 @@
 ####4.1 文字连接用[...](http:...) 表示文字连接
 [某个站点](http://www.51job.com)
 
-####4.2 图片连接,显示网络图片or本地图片
-![image]
+####4.2 图片连接,显示网络图片or本地图片,中括号为图片不能显示时的文字说明。
+![image](./images/61 suggestion.jpg)
+
+###5.代码块标识
+~~~
+int main( void )
+{
+	  // There is some codes here...
+	  // 使用 Tab 缩进代码
+}
+~~~
+
+
 
 
