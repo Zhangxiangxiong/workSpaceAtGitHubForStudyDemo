@@ -17,6 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    UIView* customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 90, 90)];
+    customView.backgroundColor = [UIColor yellowColor];
+    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithCustomView:customView];
+    
+    self.navigationItem.rightBarButtonItem = item;
+    self.navigationItem.titleView = customView;
 }
 
 - (void)didReceiveMemoryWarning {
