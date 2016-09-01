@@ -37,20 +37,18 @@ objc 的一些代码
 
 ~~~objc
 
-NS_ENUM(NSInteger, EnumTypeName)
+typedef NS_ENUM(NSInteger, EnumTypeName)
 {
     enumValue1 = 0,
     enumValue2 = 1,
 };
 
-
-NS_OPTIONS(NSInteger, EnumTypeName)
+typedef NS_OPTIONS(NSInteger, EnumTypeName)
 {
     value1 = 0,
     value2 = 1 <<0,
     value3 = 1 <<1,
 };
-
 ~~~
 	
 
