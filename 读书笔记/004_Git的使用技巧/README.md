@@ -292,9 +292,6 @@ Switched to a new branch 'issue-101'
 ~~~
 
 提交bug处理情况
-
-~~~
-
 现在修复bug，需要把“Git is free software ...”改为“Git is a free software ...”，然后提交：
 
 ~~~
