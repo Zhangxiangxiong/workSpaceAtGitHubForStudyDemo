@@ -356,5 +356,3 @@ $ git push origin --tags
 
 
 
-Test branch on GitHub
-
