@@ -249,15 +249,15 @@ Git鼓励大量使用分支：
 
 查看分支：git branch
 
-创建分支：git branch <name>
+创建分支：git branch branchName
 
-切换分支：git checkout <name>
+切换分支：git checkout branchName
 
-创建+切换分支：git checkout -b <name>
+创建+切换分支：git checkout -b branchName
 
-合并某分支到当前分支：git merge <name>
+合并某分支到当前分支：git merge branchName
 
-删除分支：git branch -d <name>
+删除分支：git branch -d branchName
 
 
 
@@ -356,4 +356,105 @@ $ git push origin --tags
 
 
 
+### Git 的实验（实际操作范例）
+
+1：项目初始化 git init 或create project的时候 勾线 init git。
+
+2: 提交文件。经常使用git add 
+
+~~~
+git add . 
+或
+git add file1 file2
+~~~
+
+
+3: 撤销操作.
+
+3.1: 当编辑若干代码后,且代码没有被添加到缓存中。(git add . 或 git add file1 file2 完成添加)打算撤销编辑。用缓存或branch中文件覆盖。
+
+~~~
+# 撤销 单一文件的编辑
+git checkout -- GitTestProject/AppDelegate.h
+
+# 撤销 所有文件的编辑
+git checkout -- .
+~~~
+
+
+
+4: bug 修复流程。
+
+4.1 stash当前分支的工作情况
+
+~~~
+# 当前分支会回复到库中的最后版本(只要是没有被commit的修改都会被撤销,通过git stash pop 恢复)
+git stash
+
+~~~
+
+4.1.1 查看stash list
+
+~~~
+git stash list
+~~~
+
+
+
+4.2 创建一个分支用于处理bug,处理完成后合并到master分支或工作分支。
+
+~~~
+ git checkout -b bugFixBranch
  
+ # 在该版本修复bug。
+$ git add .
+$ git commit -m 'fix bug'
+
+ # 分支合并
+ $ git checkout master
+ $ git branch
+     bugFixBranch
+   * master
+
+$ git merge bugFixBranch
+$ git branch -d bugFixBranch
+
+
+~~~
+
+4.3 继续之前的工作。
+
+~~~
+$ git stash pop
+~~~
+
+4.4 git 的 reset 操作。
+
+
+~~~
+$ git reset --hard HEAD^
+
+#HEAD 表示倒数最后一次提交  HEAD^ 表示倒数第二次提交 HEAD^^表示倒数第三次提交
+
+$ git reset --hard
+~~~
+ 
+ 
+通过 git  reflog 可以查看版本号.然后撤销到目标版本
+
+~~~
+$ git reflog
+a1c38af HEAD@{0}: reset: moving to HEAD^
+210f97f HEAD@{1}: commit: ....
+a1c38af HEAD@{2}: commit: good game
+920ef70 HEAD@{3}: merge bugFixBranch: Fast-forward
+d26e1cf HEAD@{4}: checkout: moving from bugFixBranch to master
+920ef70 HEAD@{5}: commit: fix bug
+
+$ git reset --hard 210f97f
+~~~
+ 
+~~~
+如果文件已经 git add 到Stage中,想放弃Stage中的修改。那么执行
+git reset HEAD filename
+~~~
